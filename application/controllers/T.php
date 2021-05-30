@@ -5,6 +5,7 @@ class T extends CI_Controller {
 	public function __construct() {
 			parent:: __construct();
 			$this->load->model('CRUD_global');
+			$this->updateBookPerDay();
 	}
 
 	public function index(){
@@ -34,8 +35,19 @@ class T extends CI_Controller {
 		}
 	}
 
+	public function updateBookPerDay(){
+		date_default_timezone_set('Asia/Jakarta');
+		$day=date('Y-m-d',strtotime('yesterday'));
+		$books=$this->CRUD_global->read('reservation',array('check_in' => $day),1);
+		foreach ($books as $row) {
+			$this->CRUD_global->update('books',array('borrowed_by' => NULL),$row->book_id);
+		}
+		$this->CRUD_global->update('reservation',array('status' => 'OUT'),$day,'check_in');
+	}
+
 	public function konfirmasi($reservationCode,$msg){
 		$this->sessionTimedOut();
+		$this->updateBookPerDay();
 		if ($msg=='in') {
 			$this->CRUD_global->update('reservation',array('status' => 'IN'),$reservationCode,'reservation_code');
 		}elseif ($msg=='out') {
