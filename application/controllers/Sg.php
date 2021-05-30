@@ -18,8 +18,8 @@ class Sg extends CI_Controller {
 			}elseif ($_SESSION['rl']=='cs') {
 				$data['books']=$this->CRUD_global->queryRunning("SELECT * FROM books");
 				$data['reservation']=$this->CRUD_global->queryRunning("SELECT reservation.*,college_student.fullname FROM (reservation LEFT JOIN college_student ON reservation.cs_id=college_student.id) WHERE status!='OUT' GROUP BY reservation_code");
-				$data['reserved_books']=$this->CRUD_global->queryRunning("SELECT books.*,reservation.reservation_code,reservation.check_in,reservation.book_id FROM reservation,books WHERE book_id=books.id AND status='PENDING' AND books.borrowed_by=".$_SESSION['id']." ORDER BY reservation.reservation_code");
-				$data['reservation_info']=$this->CRUD_global->queryRunning("SELECT reservation.reservation_code,college_student.fullname FROM reservation,college_student WHERE reservation.status='PENDING' AND reservation.cs_id=".$_SESSION['id']." GROUP BY reservation.reservation_code",0);
+				$data['reservation_info']=$this->CRUD_global->queryRunning("SELECT reservation.reservation_code,reservation.check_in,college_student.fullname FROM reservation,college_student WHERE reservation.status='PENDING' AND reservation.cs_id=".$_SESSION['id']." GROUP BY reservation.reservation_code ORDER BY reservation.check_in",0);
+				$data['reserved_books']=$this->CRUD_global->queryRunning("SELECT books.*,reservation.reservation_code,reservation.check_in,reservation.book_id FROM reservation,books WHERE book_id=books.id AND status='PENDING' AND books.borrowed_by=".$_SESSION['id']." AND reservation_code='".$data['reservation_info']->reservation_code."'");
 				$this->load->view('sg/vsg_projects',$data);
 			}else {
 				$this->session->set_flashdata('err','Role tidak diketahui, coba lagi!');
@@ -40,14 +40,17 @@ class Sg extends CI_Controller {
 
 	public function createReservationConfirm($studentId) {
 		$this->sessionTimedOut();
-
 		if ($this->input->post('date')<date('Y-m-d') || $this->input->post('date')>date('Y-m-d',strtotime('+1 week'))) {
 			$this->session->set_flashdata('err','Diluar batas tanggal yang disediakan!');
 			redirect('sg');
 		}elseif ($this->CRUD_global->read('reservation',array('check_in' => $this->input->post('date'), 'cs_id' => $_SESSION['id'], 'status' => 'PENDING'))) {
 			$this->session->set_flashdata('err','Anda sudah melakukan reservasi di hari tersebut.');
 			redirect('sg');
-		}else{
+		}elseif ($this->CRUD_global->queryRunning("SELECT * FROM reservation WHERE check_in='".$this->input->post('date')."' AND status!='OUT'")->result_id->num_rows>=50) {
+			$this->session->set_flashdata('err','Reservasi sudah penuh, coba dilain hari!');
+			redirect('sg');
+		}
+		else{
 			date_default_timezone_set("Asia/Jakarta");
 			$data = array(
 				'reservation_code' => date('DymdHis'),
