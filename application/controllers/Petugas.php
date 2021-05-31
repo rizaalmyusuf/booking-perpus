@@ -14,7 +14,7 @@ class Petugas extends CI_Controller {
 				$this->session->set_flashdata('err','Anda bukan petugas.');
 				redirect('admin');
 			}elseif ($_SESSION['rl']=='lo') {
-				$data['reservation']=$this->BP_model->queryRunning("SELECT reservation.*,college_student.fullname FROM reservation,college_student WHERE status!='OUT' GROUP BY reservation_code");
+				$data['reservation']=$this->BP_model->queryRunning("SELECT reservation.*,college_student.fullname FROM reservation,college_student WHERE status!='OUT' AND cs_id=college_student.id GROUP BY reservation_code");
 				$this->load->view('petugas/vp_konfirmasi',$data);
 			}elseif ($_SESSION['rl']=='cs') {
 				$this->session->set_flashdata('err','Anda bukan petugas.');
