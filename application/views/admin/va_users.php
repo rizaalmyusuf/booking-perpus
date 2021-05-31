@@ -45,21 +45,21 @@
                           if ($this->session->flashdata('err')) {
                             ?>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                              <strong>Failed!</strong> <?php echo $this->session->flashdata('err')?>
+                              <strong>Gagal!</strong> <?php echo $this->session->flashdata('err')?>
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <?php
                           }else if ($this->session->flashdata('warn')) {
                             ?>
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                              <strong>Warning!</strong> <?php echo $this->session->flashdata('warn')?>
+                              <strong>Perhatian!</strong> <?php echo $this->session->flashdata('warn')?>
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <?php
                           }else if ($this->session->flashdata('succ')) {
                             ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                              <strong>Success!</strong> <?php echo $this->session->flashdata('succ')?>
+                              <strong>Berhasil!</strong> <?php echo $this->session->flashdata('succ')?>
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <?php
