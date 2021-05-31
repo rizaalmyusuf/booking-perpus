@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 	public function __construct() {
 			parent:: __construct();
-			$this->load->model('CRUD_global');
+			$this->load->model('BP_model');
 	}
 
 	public function index(){
@@ -12,9 +12,9 @@ class Login extends CI_Controller {
 			if($_SESSION['rl']=='administrator'){
 				redirect('admin');
 			}elseif ($_SESSION['rl']=='lo') {
-				redirect('t');
+				redirect('petugas');
 			}elseif ($_SESSION['rl']=='cs') {
-				redirect('sg');
+				redirect('mahasiswa');
 			}else {
 				$this->session->set_flashdata('err','Unknow role, please try again!');
 				redirect('login/logout');
@@ -29,9 +29,9 @@ class Login extends CI_Controller {
 		$pwdAdmin = md5('BookingPerpusAdministrator'.$this->input->post('password'));
 		$pwdLO = md5('BookingPerpusLibraryOfficer'.$this->input->post('password'));
 		$pwdCS = md5('BookingPerpusCollegeStudent'.$this->input->post('password'));
-		$dataAdmin = $this->CRUD_global->read('admin', array('username' => $un));
-		$dataLO = $this->CRUD_global->read('library_officer', array('username' => $un));
-		$dataCS = $this->CRUD_global->read('college_student', array('username' => $un));
+		$dataAdmin = $this->BP_model->read('admin', array('username' => $un));
+		$dataLO = $this->BP_model->read('library_officer', array('username' => $un));
+		$dataCS = $this->BP_model->read('college_student', array('username' => $un));
 		$data="";
 
 		if($dataAdmin){

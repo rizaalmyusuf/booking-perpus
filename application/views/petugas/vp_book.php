@@ -26,7 +26,7 @@
                             <a class="nav-link" href="<?php echo base_url(); ?>">
                               <div class="sb-nav-link-icon"><i class="fas fa-clipboard-check"></i></div>Konfirmasi
                             </a>
-                            <a class="nav-link active" href="<?php echo base_url('t/books'); ?>">
+                            <a class="nav-link active" href="<?php echo base_url('petugas/books'); ?>">
                               <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>Book List
                             </a>
                             <a class="nav-link" href="<?php echo base_url('login/logout'); ?>">
@@ -100,7 +100,7 @@
                                       <td><a href="#modalBookId<?php echo $row->id; ?>" data-toggle="modal" title="Click for details..."><?php echo $row->title; ?></a></td>
                                       <div class="modal fade" id="modalBookId<?php echo $row->id; ?>" tabindex="-1" role="dialog" aria-labelledby="modalBookId<?php echo $row->id; ?>Title" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
-                                          <form action="<?php echo base_url("t/editBookConfirm/$row->id"); ?>" method="post">
+                                          <form action="<?php echo base_url("petugas/editBookConfirm/$row->id"); ?>" method="post">
                                             <div class="modal-content">
                                               <div class="modal-header">
                                                 <h5 class="modal-title" id="modalBookId<?php echo $row->id; ?>Title"><i class="fas fa-book"></i> <?php echo $row->title; ?></h5>
@@ -156,7 +156,7 @@
                                       <td><?php echo $row->year_released; ?></td>
                                       <td>
                                         <?php echo $row->fullname; ?>
-                                        <a class="btn btn-danger btn-sm float-right" href="<?php echo base_url('t/removeBookConfirm/').$row->id ?>" onclick="return confirm('Are you sure?')" title="Delete" role="button"><i class="fas fa-trash"></i></a>
+                                        <a class="btn btn-danger btn-sm float-right" href="<?php echo base_url('petugas/removeBookConfirm/').$row->id ?>" onclick="return confirm('Are you sure?')" title="Delete" role="button"><i class="fas fa-trash"></i></a>
                                       </td>
                                     </tr>
                                   <?php endforeach; ?>
@@ -171,7 +171,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                               </div>
                               <div class="modal-body">
-                                <?php echo form_open_multipart('t/addBookConfirm') ?>
+                                <?php echo form_open_multipart('petugas/addBookConfirm') ?>
                                   <div class="form-group">
                                     <label class="mb-1" for="bc"><i class="fas fa-barcode"></i> Barcode</label>
                                     <input class="form-control py-4" id="bc" type="text" name="barcode" placeholder="Type book barcode here..." required/>

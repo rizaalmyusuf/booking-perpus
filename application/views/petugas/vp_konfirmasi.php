@@ -26,7 +26,7 @@
                             <a class="nav-link active" href="<?php echo base_url(); ?>">
                               <div class="sb-nav-link-icon"><i class="fas fa-clipboard-check"></i></div>Konfirmasi
                             </a>
-                            <a class="nav-link" href="<?php echo base_url('t/books'); ?>">
+                            <a class="nav-link" href="<?php echo base_url('petugas/books'); ?>">
                               <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>Book List
                             </a>
                             <a class="nav-link" href="<?php echo base_url('login/logout'); ?>">
@@ -93,11 +93,11 @@
                                       <?php echo $row->fullname;
                                         if ($row->status=='PENDING') {
                                           ?>
-                                            <a class="btn btn-success float-right" href="<?php echo base_url('t/konfirmasi/'.$row->reservation_code.'/in') ?>" onclick="return confirm('Are you sure?')" title="Confirm" role="button"><i class="fas fa-sign-in-alt"></i> Check In</a>
+                                            <a class="btn btn-success float-right" href="<?php echo base_url('petugas/konfirmasi/'.$row->reservation_code.'/in') ?>" onclick="return confirm('Are you sure?')" title="Confirm" role="button"><i class="fas fa-sign-in-alt"></i> Check In</a>
                                           <?php
                                         }elseif ($row->status=='IN') {
                                           ?>
-                                            <a class="btn btn-danger float-right" href="<?php echo base_url('t/konfirmasi/'.$row->reservation_code.'/out') ?>" onclick="return confirm('Are you sure?')" title="Confirm" role="button"><i class="fas fa-sign-out-alt"></i> Check Out</a>
+                                            <a class="btn btn-danger float-right" href="<?php echo base_url('petugas/konfirmasi/'.$row->reservation_code.'/out') ?>" onclick="return confirm('Are you sure?')" title="Confirm" role="button"><i class="fas fa-sign-out-alt"></i> Check Out</a>
                                           <?php
                                         }
                                       ?>

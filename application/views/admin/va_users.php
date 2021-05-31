@@ -108,16 +108,16 @@
                             </div>
                           </div>
                         </div>
-                        <ul class="nav nav-tabs" id="projTab" role="tablist">
+                        <ul class="nav nav-tabs" id="loTab" role="tablist">
                           <li class="nav-item">
-                            <a class="nav-link active" id="g-tab" data-toggle="tab" href="#g" role="tab" aria-controls="g" aria-selected="true"><i class="fas fa-user-tie"></i> Library Officer</a>
+                            <a class="nav-link active" id="lo-tab" data-toggle="tab" href="#lo" role="tab" aria-controls="lo" aria-selected="true"><i class="fas fa-user-tie"></i> Library Officer</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" id="sg-tab" data-toggle="tab" href="#sg" role="tab" aria-controls="sg" aria-selected="false"><i class="fas fa-user-graduate"></i> College Student</a>
+                            <a class="nav-link" id="cs-tab" data-toggle="tab" href="#cs" role="tab" aria-controls="cs" aria-selected="false"><i class="fas fa-user-graduate"></i> College Student</a>
                           </li>
                         </ul>
-                        <div class="tab-content" id="projTabContent">
-                          <div class="tab-pane fade show active" id="g" role="tabpanel" aria-labelledby="g-tab">
+                        <div class="tab-content" id="loTabContent">
+                          <div class="tab-pane fade show active" id="lo" role="tabpanel" aria-labelledby="lo-tab">
                             <div class="table-responsive mt-2">
                               <table class="table" id="dataTable" width="100%" cellspacing="0">
                                   <thead class="thead-dark">
@@ -186,7 +186,7 @@
                               </table>
                             </div>
                           </div>
-                          <div class="tab-pane fade" id="sg" role="tabpanel" aria-labelledby="sg-tab">
+                          <div class="tab-pane fade" id="cs" role="tabpanel" aria-labelledby="cs-tab">
                             <div class="table-responsive mt-2">
                               <table class="table" id="dataTableCS" width="100%" cellspacing="0">
                                   <thead class="thead-dark">

@@ -1,10 +1,10 @@
-<?php
+vp_book<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class T extends CI_Controller {
+class Petugas extends CI_Controller {
 	public function __construct() {
 			parent:: __construct();
-			$this->load->model('CRUD_global');
+			$this->load->model('BP_model');
 			$this->updateBookPerDay();
 	}
 
@@ -14,11 +14,11 @@ class T extends CI_Controller {
 				$this->session->set_flashdata('err','Anda bukan petugas.');
 				redirect('admin');
 			}elseif ($_SESSION['rl']=='lo') {
-				$data['reservation']=$this->CRUD_global->queryRunning("SELECT reservation.*,college_student.fullname FROM reservation,college_student WHERE status!='OUT' GROUP BY reservation_code");
-				$this->load->view('t/vp_konfirmasi',$data);
+				$data['reservation']=$this->BP_model->queryRunning("SELECT reservation.*,college_student.fullname FROM reservation,college_student WHERE status!='OUT' GROUP BY reservation_code");
+				$this->load->view('petugas/vp_konfirmasi',$data);
 			}elseif ($_SESSION['rl']=='cs') {
 				$this->session->set_flashdata('err','Anda bukan petugas.');
-				redirect('sg');
+				redirect('mahasiswa');
 			}else {
 				$this->session->set_flashdata('err','Role tidak diketahui, coba lagi!');
 				redirect('login/logout');
@@ -38,33 +38,33 @@ class T extends CI_Controller {
 	public function updateBookPerDay(){
 		date_default_timezone_set('Asia/Jakarta');
 		$day=date('Y-m-d',strtotime('yesterday'));
-		$books=$this->CRUD_global->read('reservation',array('check_in' => $day),1);
+		$books=$this->BP_model->read('reservation',array('check_in' => $day),1);
 		foreach ($books as $row) {
-			$this->CRUD_global->update('books',array('borrowed_by' => NULL),$row->book_id);
+			$this->BP_model->update('books',array('borrowed_by' => NULL),$row->book_id);
 		}
-		$this->CRUD_global->update('reservation',array('status' => 'OUT'),$day,'check_in');
+		$this->BP_model->update('reservation',array('status' => 'OUT'),$day,'check_in');
 	}
 
 	public function konfirmasi($reservationCode,$msg){
 		$this->sessionTimedOut();
 		$this->updateBookPerDay();
 		if ($msg=='in') {
-			$this->CRUD_global->update('reservation',array('status' => 'IN'),$reservationCode,'reservation_code');
+			$this->BP_model->update('reservation',array('status' => 'IN'),$reservationCode,'reservation_code');
 		}elseif ($msg=='out') {
-			$books=$this->CRUD_global->read('reservation',array('reservation_code' => $reservationCode),1);
+			$books=$this->BP_model->read('reservation',array('reservation_code' => $reservationCode),1);
 			foreach ($books as $row) {
-				$this->CRUD_global->update('books',array('borrowed_by' => NULL),$row->book_id);
+				$this->BP_model->update('books',array('borrowed_by' => NULL),$row->book_id);
 			}
-			$this->CRUD_global->update('reservation',array('status' => 'OUT'),$reservationCode,'reservation_code');
+			$this->BP_model->update('reservation',array('status' => 'OUT'),$reservationCode,'reservation_code');
 		}
 		$this->session->set_flashdata('succ','Reservasi telah dikonfirmasi.');
-		redirect("t");
+		redirect("petugas");
 	}
 
 	public function books(){
 		$this->sessionTimedOut();
-		$data['dataBooks'] = $this->CRUD_global->queryRunning('SELECT books.*,college_student.fullname FROM books LEFT JOIN college_student ON borrowed_by=college_student.id');
-		$this->load->view('t/vt_projects',$data);
+		$data['dataBooks'] = $this->BP_model->queryRunning('SELECT books.*,college_student.fullname FROM books LEFT JOIN college_student ON borrowed_by=college_student.id');
+		$this->load->view('petugas/vp_book',$data);
 	}
 
 	public function addBookConfirm(){
@@ -77,9 +77,9 @@ class T extends CI_Controller {
 			'genre' => $this->input->post('genre'),
 			'year_released' => $this->input->post('year')
 		);
-		$this->CRUD_global->create('books',$data);
+		$this->BP_model->create('books',$data);
 		$this->session->set_flashdata('succ','Buku telah ditambahkan.');
-		redirect("t/books");
+		redirect("petugas/books");
 	}
 
 	public function editBookConfirm($BookId){
@@ -89,10 +89,10 @@ class T extends CI_Controller {
 			$bcNew=$this->input->post('bcOld');
 		}else{
 			$bcNew=$this->input->post('barcode');
-			$cekBC=$this->CRUD_global->read('books',array('barcode' => $this->input->post('barcode')));
+			$cekBC=$this->BP_model->read('books',array('barcode' => $this->input->post('barcode')));
 			if ($cekBC) {
 				$this->session->set_flashdata('err','Barcode sudah dipakai.');
-				redirect("t/books");
+				redirect("petugas/books");
 			}
 		}
 
@@ -104,15 +104,15 @@ class T extends CI_Controller {
 			'genre' => $this->input->post('genre'),
 			'year_released' => $this->input->post('year')
 		);
-		$this->CRUD_global->update('books',$data,$BookId);
+		$this->BP_model->update('books',$data,$BookId);
 		$this->session->set_flashdata('succ','Buku telah disunting.');
-		redirect("t/books");
+		redirect("petugas/books");
 	}
 
 	public function removeBookConfirm($DeleteId){
 		$this->sessionTimedOut();
-		$this->CRUD_global->delete('books',$DeleteId);
+		$this->BP_model->delete('books',$DeleteId);
 		$this->session->set_flashdata('succ','Buku telah dihapus.');
-		redirect("t/books");
+		redirect("petugas/books");
 	}
 }

@@ -26,7 +26,7 @@
                             <a class="nav-link active" href="<?php echo base_url(); ?>">
                               <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>Reservation List
                             </a>
-                            <a class="nav-link" href="<?php echo base_url('sg#myReservation'); ?>">
+                            <a class="nav-link" href="<?php echo base_url('mahasiswa#myReservation'); ?>">
                               <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>My Reservation
                             </a>
                             <a class="nav-link" href="<?php echo base_url('login/logout'); ?>">
@@ -76,7 +76,7 @@
                         <div class="modal fade" id="modalCreateReservation" tabindex="-1" role="dialog" aria-labelledby="modalCreateReservationTitle" aria-hidden="true">
                           <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
-                              <form action="<?php echo base_url('sg/createReservationConfirm/').$_SESSION['id']; ?>" method="post">
+                              <form action="<?php echo base_url('mahasiswa/createReservationConfirm/').$_SESSION['id']; ?>" method="post">
                                 <div class="modal-header">
                                   <h5 class="modal-title" id="modalCreateReservationTitle"><i class="fas fa-asterisk"></i> Create a new reservation</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
