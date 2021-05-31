@@ -174,7 +174,7 @@
                                                 <div class="modal-footer">
                                                   <input type="text" name="role" value="lo" readonly hidden>
                                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                  <button type="submit" class="btn btn-primary"><i class="fas fa-user-edit"></i> Edit</button>
+                                                  <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
                                                 </div>
                                               </div>
                                             </form>
@@ -243,7 +243,7 @@
                                                 <div class="modal-footer">
                                                   <input type="text" name="role" value="cs" readonly hidden>
                                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                  <button type="submit" class="btn btn-primary"><i class="fas fa-user-edit"></i> Edit</button>
+                                                  <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
                                                 </div>
                                               </div>
                                             </form>

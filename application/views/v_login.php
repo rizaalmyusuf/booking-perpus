@@ -9,6 +9,13 @@
         <title>Booking Perpus | Login</title>
         <link href="<?php echo base_url('assets/css/styles.css'); ?>" rel="stylesheet" />
         <script src="<?php echo base_url('assets/js/all.min.js'); ?>"></script>
+        <style media="screen">
+          body{
+            background-image: url("<?php echo base_url('assets/img/bg-login.jpg'); ?>");
+            background-size: cover;
+            position: relative;
+          }
+        </style>
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
