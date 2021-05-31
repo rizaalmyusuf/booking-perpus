@@ -11,22 +11,21 @@
         <script src="<?php echo base_url('assets/js/all.min.js'); ?>"></script>
         <style media="screen">
           body{
-            background-image: url("<?php echo base_url('assets/img/bg-login.jpg'); ?>");
+            background-image: url("<?php echo base_url('assets/img/bg-login.png'); ?>");
             background-size: cover;
             position: relative;
           }
         </style>
     </head>
-    <body class="bg-primary">
+    <body class="bg-primary" style="height:100vh">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-end">
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-                                    <div class="card-body mt-3">
+                <main style="height:100vh">
+                    <div class="container-fluid h-100" style="height:100vh">
+                        <div class="row justify-content-end" style="height:90vh">
+                            <div class="col-md-3">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5 h-100"><img src="assets/img/bg-logo2.png" style="border-radius: 1px;"/>
+                                    <div class="card-body mt-3 d-flex flex-column justify-content-center">
                                         <?php echo form_open('login/cek') ?>
                                       		<span class="text-danger"><?php echo $this->session->flashdata('err'); ?></span>
                                           <div class="form-group"><label class="mb-3" for="un">Username</label><input class="form-control py-4" id="un" type="text" name="username" placeholder="Your username..." autofocus required/></div>

@@ -10,10 +10,17 @@
         <link href="<?php echo base_url(); ?>assets/css/styles.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="<?php echo base_url(); ?>assets/js/all.min.js" crossorigin="anonymous"></script>
+        <style media="screen">
+          body{
+            background-image: url("<?php echo base_url('assets/img/bg-main.png'); ?>");
+            background-size: cover;
+            position: relative;
+          }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="<?php echo base_url(); ?>">College Student</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+            <a class="navbar-brand" href="<?php echo base_url(); ?>">Mahasiswa</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto"></ul>
         </nav>
@@ -24,10 +31,10 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link active" href="<?php echo base_url(); ?>">
-                              <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>Reservation List
+                              <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>Daftar Reservasi
                             </a>
                             <a class="nav-link" href="<?php echo base_url('mahasiswa#myReservation'); ?>">
-                              <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>My Reservation
+                              <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>Reservasi Saya
                             </a>
                             <a class="nav-link" href="<?php echo base_url('login/logout'); ?>">
                               <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>Logout
@@ -44,7 +51,7 @@
                 <main>
                     <div class="container-fluid" id="myReservation">
                         <h1 class="mt-4">
-                          <i class="fas fa-list"></i> Reservation List
+                          <i class="fas fa-list"></i> Daftar Reservasi 
                         </h1>
                         <?php
                           if ($this->session->flashdata('err')) {
@@ -72,13 +79,13 @@
                             <?php
                           }
                         ?>
-                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalCreateReservation"><i class="fas fa-asterisk"></i> Create a new reservation</button><br>
+                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalCreateReservation"><i class="fas fa-asterisk"></i> Buat Reservasi Baru</button><br>
                         <div class="modal fade" id="modalCreateReservation" tabindex="-1" role="dialog" aria-labelledby="modalCreateReservationTitle" aria-hidden="true">
                           <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                               <form action="<?php echo base_url('mahasiswa/createReservationConfirm/').$_SESSION['id']; ?>" method="post">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="modalCreateReservationTitle"><i class="fas fa-asterisk"></i> Create a new reservation</h5>
+                                  <h5 class="modal-title" id="modalCreateReservationTitle"><i class="fas fa-asterisk"></i> Buat Reservasi Baru</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
@@ -87,13 +94,13 @@
                                     <input class="form-control py-4" id="d" type="date" name="date" min="<?php date_default_timezone_set("Asia/Jakarta"); echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d',strtotime("+1 week")); ?>" value="<?php echo date('Y-m-d'); ?>" required/>
                                   </div>
                                   <div class="form-group">
-                                    <label class="mb-1" for="b"><i class="fas fa-book"></i> Book</label>
+                                    <label class="mb-1" for="b"><i class="fas fa-book"></i> Buku</label>
                                     <div class="input-group">
                                       <div class="input-group-prepend">
                                         <span class="input-group-text"><strong>1</strong></span>
                                       </div>
                                       <select class="form-control" id="b" name="book1" required>
-                                        <option value="">- Required -</option>
+                                        <option value="">- Wajib Diisi -</option>
                                         <?php
                                         foreach ($books as $row) {
                                           if (!$row->borrowed_by) {
@@ -110,7 +117,7 @@
                                         <span class="input-group-text"><strong>2</strong></span>
                                       </div>
                                       <select class="form-control" id="b" name="book2">
-                                        <option value="">- Optional -</option>
+                                        <option value="">- Opsional -</option>
                                         <?php
                                         foreach ($books as $row) {
                                           if (!$row->borrowed_by) {
@@ -127,7 +134,7 @@
                                         <span class="input-group-text"><strong>3</strong></span>
                                       </div>
                                       <select class="form-control" id="b" name="book3">
-                                        <option value="">- Optional -</option>
+                                        <option value="">- Opsional -</option>
                                         <?php
                                         foreach ($books as $row) {
                                           if (!$row->borrowed_by) {
@@ -158,7 +165,7 @@
                                   if ($reservation_info) {
                                     echo $reservation_info->reservation_code;
                                   }else{
-                                    echo "No available yet.";
+                                    echo "Belum Tersedia.";
                                   }
                                 ?></center></h4>
                               </div>
@@ -166,7 +173,7 @@
                           </div>
                           <div class="col-sm-6">
                             <div class="card bg-light mb-3">
-                              <div class="card-header"><h4><center>Name</center></h4></div>
+                              <div class="card-header"><h4><center>Nama</center></h4></div>
                               <div class="card-body py-3"><h4><center><?php echo $_SESSION['fn']; ?></center></h4>
                               </div>
                             </div>
@@ -181,16 +188,17 @@
                                   <table class="table" width="100%">
                                     <tr>
                                       <td>Barcode</td>
-                                      <td>Title</td>
-                                      <td>Author</td>
-                                      <td>Publisher</td>
+                                      <td>Judul</td>
+                                      <td>Penulis</td>
+                                      <td>Penerbit</td>
                                       <td>Genre</td>
-                                      <td>Released Year</td>
+                                      <td>Tahun Release</td>
                                       <td>Check In</td>
                                     </tr>
                                     <?php
-                                      foreach ($reserved_books as $row) {
-                                        ?>
+                                      if ($reserved_books) {
+                                        foreach ($reserved_books as $row) {
+                                          ?>
                                           <tr>
                                             <td><?php echo $row->barcode; ?></td>
                                             <td><?php echo $row->title; ?></td>
@@ -200,7 +208,10 @@
                                             <td><?php echo $row->year_released; ?></td>
                                             <td><?php echo $row->check_in; ?></td>
                                           </tr>
-                                        <?php
+                                          <?php
+                                        }
+                                      } else {
+                                        ?><td colspan="7">Belum Tersedia.</td><?php
                                       }
                                     ?>
                                   </table>
@@ -214,22 +225,22 @@
                               <thead class="thead-dark">
                                   <tr>
                                     <th>Check In</th>
-                                    <th>Reservation Code</th>
-                                    <th>Fullname</th>
+                                    <th>Kode Reservasi</th>
+                                    <th>Nama Lengkap</th>
                                     <th>Status</th>
                                   </tr>
                               </thead>
                               <tfoot class="thead-dark">
                                   <tr>
                                     <th>Check In</th>
-                                    <th>Reservation Code</th>
-                                    <th>Fullname</th>
+                                    <th>Kode Reservasi</th>
+                                    <th>Nama Penuh</th>
                                     <th>Status</th>
                                   </tr>
                               </tfoot>
                               <tbody>
                                 <?php foreach ($reservation as $row ): ?>
-                                  <tr>
+                                  <tr style="background-color: white;">
                                     <td><?php echo $row->check_in; ?></td>
                                     <td><?php echo $row->reservation_code; ?></td>
                                     <td><?php echo $row->fullname; ?></td>

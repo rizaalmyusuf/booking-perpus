@@ -10,10 +10,17 @@
         <link href="<?php echo base_url(); ?>assets/css/styles.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="<?php echo base_url(); ?>assets/js/all.min.js" crossorigin="anonymous"></script>
+        <style media="screen">
+          body{
+            background-image: url("<?php echo base_url('assets/img/bg-main.png'); ?>");
+            background-size: cover;
+            position: relative;
+          }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="<?php echo base_url(); ?>">Library Officer</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+            <a class="navbar-brand" href="<?php echo base_url(); ?>">Staff Perpustakaan</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto"></ul>
         </nav>
@@ -27,10 +34,10 @@
                               <div class="sb-nav-link-icon"><i class="fas fa-clipboard-check"></i></div>Konfirmasi
                             </a>
                             <a class="nav-link" href="<?php echo base_url('petugas/books'); ?>">
-                              <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>Book List
+                              <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>Daftar Buku
                             </a>
                             <a class="nav-link" href="<?php echo base_url('login/logout'); ?>">
-                              <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>Logout
+                              <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>Keluar
                             </a>
                         </div>
                     </div>
@@ -73,15 +80,15 @@
                               <thead class="thead-dark">
                                   <tr>
                                     <th>Check In</th>
-                                    <th>Reservation Code</th>
-                                    <th>Fullname</th>
+                                    <th>Kode Reservasi</th>
+                                    <th>Nama Penuh</th>
                                   </tr>
                               </thead>
                               <tfoot class="thead-dark">
                                   <tr>
                                     <th>Check In</th>
-                                    <th>Reservation Code</th>
-                                    <th>Fullname</th>
+                                    <th>Kode Reservasi</th>
+                                    <th>Nama Penuh</th>
                                   </tr>
                               </tfoot>
                               <tbody>

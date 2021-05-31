@@ -10,6 +10,13 @@
         <link href="<?php echo base_url(); ?>assets/css/styles.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="<?php echo base_url(); ?>assets/js/all.min.js" crossorigin="anonymous"></script>
+        <style media="screen">
+          body{
+            background-image: url("<?php echo base_url('assets/img/bg-main.png'); ?>");
+            background-size: cover;
+            position: relative;
+          }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -24,10 +31,10 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link active" href="<?php echo base_url(); ?>">
-                              <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>Users
+                              <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>Pengguna
                             </a>
                             <a class="nav-link" href="<?php echo base_url('login/logout'); ?>">
-                              <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>Logout
+                              <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>Keluar
                             </a>
                         </div>
                     </div>
@@ -40,7 +47,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4"><i class="fas fa-users"></i> User Management</h1>
+                        <h1 class="mt-4"><i class="fas fa-users"></i> Manajemen Pengguna</h1>
                         <?php
                           if ($this->session->flashdata('err')) {
                             ?>
@@ -65,7 +72,7 @@
                             <?php
                           }
                         ?>
-                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalCreateTeacher"><i class="fas fa-asterisk"></i> Create a new one</button><br>
+                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalCreateTeacher"><i class="fas fa-asterisk"></i> Buat Akun Baru </button><br>
                         <div class="modal fade" id="modalCreateTeacher" tabindex="-1" role="dialog" aria-labelledby="modalCreateTeacherTitle" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -77,26 +84,26 @@
                                 <div class="modal-body">
                                   <div class="form-group">
                                     <label class="mb-1" for="unId"><i class="fas fa-user"></i> Username</label>
-                                    <input class="form-control py-4" id="unId" type="text" name="un" placeholder="Type username here..." required/>
+                                    <input class="form-control py-4" id="unId" type="text" name="un" placeholder="Masukan Username User.." required/>
                                   </div>
                                   <div class="form-group">
                                     <label class="mb-1" for="pwdId"><i class="fas fa-user-lock"></i> Password</label>
-                                    <input class="form-control py-4" id="pwdId" type="password" name="pwd" placeholder="Type user password here..." required/>
+                                    <input class="form-control py-4" id="pwdId" type="password" name="pwd" placeholder="Masukan Password Pengguna disini.." required/>
                                   </div>
                                   <div class="form-group">
-                                    <label class="mb-1" for="idnId"><i class="fas fa-user-lock"></i> Identification Number</label>
-                                    <input class="form-control py-4" id="idnId" type="number" min="1" name="idn" placeholder="Type user ID number here..." required/>
+                                    <label class="mb-1" for="idnId"><i class="fas fa-user-lock"></i> Nomor Identifikasi</label>
+                                    <input class="form-control py-4" id="idnId" type="number" min="1" name="idn" placeholder="Masukan nomor ID Pengguna disini" required/>
                                   </div>
                                   <div class="form-group">
-                                    <label class="mb-1" for="fnId"><i class="fas fa-user"></i> Fullname</label>
-                                    <input class="form-control py-4" id="fnId" type="text" name="fn" placeholder="Type user fullname here..." required/>
+                                    <label class="mb-1" for="fnId"><i class="fas fa-user"></i> Nama Penuh</label>
+                                    <input class="form-control py-4" id="fnId" type="text" name="fn" placeholder="Masukan Nama Penuh Pengguna" required/>
                                   </div>
                                   <div class="form-group">
-                                    <label class="mb-1" for="roleId"><i class="fas fa-user"></i> Role</label>
+                                    <label class="mb-1" for="roleId"><i class="fas fa-flag"></i> Peran</label>
                                     <select class="form-control" name="role" required>
-                                      <option value="">- Choose new role -</option>
-                                      <option value="lo">Officer</option>
-                                      <option value="cs">Student</option>
+                                      <option value="">- Pilih Peran Pengguna.. -</option>
+                                      <option value="lo">Staff Perpustakaan</option>
+                                      <option value="cs">Mahasiswa</option>
                                     </select>
                                   </div>
                                 </div>
@@ -110,10 +117,10 @@
                         </div>
                         <ul class="nav nav-tabs" id="loTab" role="tablist">
                           <li class="nav-item">
-                            <a class="nav-link active" id="lo-tab" data-toggle="tab" href="#lo" role="tab" aria-controls="lo" aria-selected="true"><i class="fas fa-user-tie"></i> Library Officer</a>
+                            <a class="nav-link active" id="lo-tab" data-toggle="tab" href="#lo" role="tab" aria-controls="lo" aria-selected="true"><i class="fas fa-user-tie"></i> Staff Perpustakaan</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" id="cs-tab" data-toggle="tab" href="#cs" role="tab" aria-controls="cs" aria-selected="false"><i class="fas fa-user-graduate"></i> College Student</a>
+                            <a class="nav-link" id="cs-tab" data-toggle="tab" href="#cs" role="tab" aria-controls="cs" aria-selected="false"><i class="fas fa-user-graduate"></i> Mahasiswa</a>
                           </li>
                         </ul>
                         <div class="tab-content" id="loTabContent">
@@ -123,15 +130,15 @@
                                   <thead class="thead-dark">
                                       <tr>
                                           <th>Username</th>
-                                          <th>Identification Number</th>
-                                          <th>Fullname</th>
+                                          <th>Nomor Identifikasi</th>
+                                          <th>Nama Penuh</th>
                                       </tr>
                                   </thead>
                                   <tfoot class="thead-dark">
                                       <tr>
                                           <th>Username</th>
-                                          <th>Identification Number</th>
-                                          <th>Fullname</th>
+                                          <th>Nomor Identifikasi</th>
+                                          <th>Nama Penuh</th>
                                       </tr>
                                   </tfoot>
                                   <tbody>
@@ -163,11 +170,11 @@
                                                     <input class="form-control py-4" id="pwdId<?php echo $row->id ?>" type="password" name="pwd" placeholder="Fill this input for renew password..."/>
                                                   </div>
                                                   <div class="form-group">
-                                                    <label class="mb-1" for="idnId<?php echo $row->id ?>"><i class="fas fa-user"></i> Identification Number</label>
+                                                    <label class="mb-1" for="idnId<?php echo $row->id ?>"><i class="fas fa-user"></i> Nomor Identifikasi</label>
                                                     <input class="form-control py-4" id="idnId<?php echo $row->id ?>" type="text" min="1" name="idn" value="<?php echo $row->id_number; ?>" required/>
                                                   </div>
                                                   <div class="form-group">
-                                                    <label class="mb-1" for="fnId<?php echo $row->id ?>"><i class="fas fa-user"></i> Fullname</label>
+                                                    <label class="mb-1" for="fnId<?php echo $row->id ?>"><i class="fas fa-user"></i> Nama Penuh</label>
                                                     <input class="form-control py-4" id="fnId<?php echo $row->id ?>" type="text" name="fn" value="<?php echo $row->fullname; ?>" required/>
                                                   </div>
                                                 </div>
@@ -192,15 +199,15 @@
                                   <thead class="thead-dark">
                                       <tr>
                                           <th>Username</th>
-                                          <th>Identification Number</th>
-                                          <th>Fullname</th>
+                                          <th>Nomor Identifikasi</th>
+                                          <th>Nama Penuh</th>
                                       </tr>
                                   </thead>
                                   <tfoot class="thead-dark">
                                       <tr>
                                           <th>Username</th>
-                                          <th>Identification Number</th>
-                                          <th>Fullname</th>
+                                          <th>Nomor Identifikasi</th>
+                                          <th>Nama Penuh</th>
                                       </tr>
                                   </tfoot>
                                   <tbody>
@@ -232,11 +239,11 @@
                                                     <input class="form-control py-4" id="pwdId<?php echo $row->id ?>" type="password" name="pwd" placeholder="Fill this input for renew password..."/>
                                                   </div>
                                                   <div class="form-group">
-                                                    <label class="mb-1" for="idnId<?php echo $row->id ?>"><i class="fas fa-user"></i> Identification Number</label>
+                                                    <label class="mb-1" for="idnId<?php echo $row->id ?>"><i class="fas fa-user"></i> Nomor Identifikasi</label>
                                                     <input class="form-control py-4" id="idnId<?php echo $row->id ?>" type="text" min="1" name="idn" value="<?php echo $row->id_number; ?>" required/>
                                                   </div>
                                                   <div class="form-group">
-                                                    <label class="mb-1" for="fnId<?php echo $row->id ?>"><i class="fas fa-user"></i> Fullname</label>
+                                                    <label class="mb-1" for="fnId<?php echo $row->id ?>"><i class="fas fa-user"></i> Nama Penuh</label>
                                                     <input class="form-control py-4" id="fnId<?php echo $row->id ?>" type="text" name="fn" value="<?php echo $row->fullname; ?>" required/>
                                                   </div>
                                                 </div>

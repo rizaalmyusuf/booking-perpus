@@ -73,6 +73,14 @@ body {
   outline: 0 !important;
 }
 
+div.logologin {
+  width:100px; /*width of your image*/
+  height:100px; /*height of your image*/
+  background-image:url('assets/img/bg-logo.png');
+  margin:0; /* If you want no margin */
+  padding:0; /*if your want to padding */
+}​
+
 hr {
   box-sizing: content-box;
   height: 0;
@@ -82,6 +90,7 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  font-family: "helvetica";
 }
 
 p {
@@ -10212,3 +10221,4 @@ body {
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
 }
+
