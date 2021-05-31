@@ -189,8 +189,9 @@
                                       <td>Check In</td>
                                     </tr>
                                     <?php
-                                      foreach ($reserved_books as $row) {
-                                        ?>
+                                      if ($reserved_books) {
+                                        foreach ($reserved_books as $row) {
+                                          ?>
                                           <tr>
                                             <td><?php echo $row->barcode; ?></td>
                                             <td><?php echo $row->title; ?></td>
@@ -200,7 +201,10 @@
                                             <td><?php echo $row->year_released; ?></td>
                                             <td><?php echo $row->check_in; ?></td>
                                           </tr>
-                                        <?php
+                                          <?php
+                                        }
+                                      } else {
+                                        ?><td colspan="7">No available yet.</td><?php
                                       }
                                     ?>
                                   </table>

@@ -20,7 +20,11 @@ class Mahasiswa extends CI_Controller {
 				$data['books']=$this->BP_model->queryRunning("SELECT * FROM books");
 				$data['reservation']=$this->BP_model->queryRunning("SELECT reservation.*,college_student.fullname FROM (reservation LEFT JOIN college_student ON reservation.cs_id=college_student.id) WHERE status!='OUT' GROUP BY reservation_code");
 				$data['reservation_info']=$this->BP_model->queryRunning("SELECT reservation.reservation_code,reservation.check_in,college_student.fullname FROM reservation,college_student WHERE reservation.status='PENDING' AND reservation.cs_id=".$_SESSION['id']." GROUP BY reservation.reservation_code ORDER BY reservation.check_in",0);
-				$data['reserved_books']=$this->BP_model->queryRunning("SELECT books.*,reservation.reservation_code,reservation.check_in,reservation.book_id FROM reservation,books WHERE book_id=books.id AND status='PENDING' AND books.borrowed_by=".$_SESSION['id']." AND reservation_code='".$data['reservation_info']->reservation_code."'");
+				if ($data['reservation_info']) {
+					$data['reserved_books']=$this->BP_model->queryRunning("SELECT books.*,reservation.reservation_code,reservation.check_in,reservation.book_id FROM reservation,books WHERE book_id=books.id AND status='PENDING' AND books.borrowed_by=".$_SESSION['id']." AND reservation_code='".$data['reservation_info']->reservation_code."'");
+				}else {
+					$data['reserved_books']=NULL;
+				}
 				$this->load->view('mahasiswa/vm_main',$data);
 			}else {
 				$this->session->set_flashdata('err','Role tidak diketahui, coba lagi!');
