@@ -124,19 +124,19 @@
                                                   <input class="form-control py-4" id="title" type="text" name="title" value="<?php echo $row->title; ?>" placeholder="Type book title here..." required/>
                                                 </div>
                                                 <div class="form-group">
-                                                  <label class="mb-1" for="auth"><i class="fas fa-info-circle"></i> Author</label>
+                                                  <label class="mb-1" for="auth"><i class="fas fa-user"></i> Author</label>
                                                   <input class="form-control py-4" id="auth" type="text" name="author" value="<?php echo $row->author; ?>" placeholder="Type book author here..." required/>
                                                 </div>
                                                 <div class="form-group">
-                                                  <label class="mb-1" for="pub"><i class="fas fa-stopwatch"></i> Publisher</label>
+                                                  <label class="mb-1" for="pub"><i class="fas fa-industry"></i> Publisher</label>
                                                   <input class="form-control py-4" id="pub" type="text" name="publisher" value="<?php echo $row->publisher; ?>" placeholder="Type book publiser here..." required/>
                                                 </div>
                                                 <div class="form-group">
-                                                  <label class="mb-1" for="gen"><i class="fas fa-stopwatch"></i> Genre</label>
+                                                  <label class="mb-1" for="gen"><i class="fas fa-filter"></i> Genre</label>
                                                   <input class="form-control py-4" id="gen" type="text" name="genre" value="<?php echo $row->genre; ?>" placeholder="Type book genre here..." required/>
                                                 </div>
                                                 <div class="form-group">
-                                                  <label class="mb-1" for="y"><i class="fas fa-date"></i> Year Released</label>
+                                                  <label class="mb-1" for="y"><i class="fas fa-calendar"></i> Year Released</label>
                                                   <select class="form-control" id="y" name="year" required>
                                                     <?php for ($i=1900;$i<=2040;$i++) {
                                                       if ($i==$row->year_released) {
@@ -188,19 +188,19 @@
                                     <input class="form-control py-4" id="title" type="text" name="title" placeholder="Type book title here..." required/>
                                   </div>
                                   <div class="form-group">
-                                    <label class="mb-1" for="auth"><i class="fas fa-info-circle"></i> Author</label>
+                                    <label class="mb-1" for="auth"><i class="fas fa-user"></i> Author</label>
                                     <input class="form-control py-4" id="auth" type="text" name="author" placeholder="Type book author here..." required/>
                                   </div>
                                   <div class="form-group">
-                                    <label class="mb-1" for="pub"><i class="fas fa-stopwatch"></i> Publisher</label>
+                                    <label class="mb-1" for="pub"><i class="fas fa-industry"></i> Publisher</label>
                                     <input class="form-control py-4" id="pub" type="text" name="publisher" placeholder="Type book publiser here..." required/>
                                   </div>
                                   <div class="form-group">
-                                    <label class="mb-1" for="gen"><i class="fas fa-stopwatch"></i> Genre</label>
+                                    <label class="mb-1" for="gen"><i class="fas fa-filter"></i> Genre</label>
                                     <input class="form-control py-4" id="gen" type="text" name="genre" placeholder="Type book genre here..." required/>
                                   </div>
                                   <div class="form-group">
-                                    <label class="mb-1" for="y"><i class="fas fa-date"></i> Year Released</label>
+                                    <label class="mb-1" for="y"><i class="fas fa-calendar"></i> Year Released</label>
                                     <select class="form-control" id="y" name="year" required>
                                       <?php for ($i=1900;$i<=2040;$i++) {
                                         if ($i==date('Y')) {

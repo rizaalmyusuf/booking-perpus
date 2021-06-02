@@ -38,11 +38,11 @@ class Petugas extends CI_Controller {
 	public function updateBookPerDay(){
 		date_default_timezone_set('Asia/Jakarta');
 		$day=date('Y-m-d',strtotime('yesterday'));
-		$books=$this->BP_model->read('reservation',array('check_in' => $day),1);
+		$books=$this->BP_model->queryRunning("SELECT * FROM reservation WHERE check_in<='$day' AND status!='OUT'");
 		foreach ($books as $row) {
 			$this->BP_model->update('books',array('borrowed_by' => NULL),$row->book_id);
 		}
-		$this->BP_model->update('reservation',array('status' => 'OUT'),$day,'check_in');
+		$this->BP_model->queryRunning("UPDATE reservation SET status='OUT' WHERE check_in<='$day' AND status!='OUT'",1,1);
 	}
 
 	public function konfirmasi($reservationCode,$msg){
@@ -69,16 +69,21 @@ class Petugas extends CI_Controller {
 
 	public function addBookConfirm(){
 		$this->sessionTimedOut();
-		$data = array(
-			'barcode' => $this->input->post('barcode'),
-			'title' => $this->input->post('title'),
-			'author' => $this->input->post('author'),
-			'publisher' => $this->input->post('publisher'),
-			'genre' => $this->input->post('genre'),
-			'year_released' => $this->input->post('year')
-		);
-		$this->BP_model->create('books',$data);
-		$this->session->set_flashdata('succ','Buku telah ditambahkan.');
+		$cekBC=$this->BP_model->read('books',array('barcode' => $this->input->post('barcode')));
+		if ($cekBC) {
+			$this->session->set_flashdata('err','Barcode sudah dipakai.');
+		}else{
+			$data = array(
+				'barcode' => $this->input->post('barcode'),
+				'title' => $this->input->post('title'),
+				'author' => $this->input->post('author'),
+				'publisher' => $this->input->post('publisher'),
+				'genre' => $this->input->post('genre'),
+				'year_released' => $this->input->post('year')
+			);
+			$this->BP_model->create('books',$data);
+			$this->session->set_flashdata('succ','Buku telah ditambahkan.');
+		}
 		redirect("petugas/books");
 	}
 

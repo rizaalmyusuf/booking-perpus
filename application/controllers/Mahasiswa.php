@@ -22,6 +22,8 @@ class Mahasiswa extends CI_Controller {
 				$data['reservation_info']=$this->BP_model->queryRunning("SELECT reservation.reservation_code,reservation.check_in,college_student.fullname FROM reservation,college_student WHERE reservation.status='PENDING' AND reservation.cs_id=".$_SESSION['id']." GROUP BY reservation.reservation_code ORDER BY reservation.check_in",0);
 				if ($data['reservation_info']) {
 					$data['reserved_books']=$this->BP_model->queryRunning("SELECT books.*,reservation.reservation_code,reservation.check_in,reservation.book_id FROM reservation,books WHERE book_id=books.id AND status='PENDING' AND books.borrowed_by=".$_SESSION['id']." AND reservation_code='".$data['reservation_info']->reservation_code."'");
+					// print_r($data['reserved_books']);
+					// exit();
 				}else {
 					$data['reserved_books']=NULL;
 				}
@@ -46,11 +48,11 @@ class Mahasiswa extends CI_Controller {
 	public function updateBookPerDay(){
 		date_default_timezone_set('Asia/Jakarta');
 		$day=date('Y-m-d',strtotime('yesterday'));
-		$books=$this->BP_model->read('reservation',array('check_in' => $day),1);
+		$books=$this->BP_model->queryRunning("SELECT * FROM reservation WHERE check_in<='$day' AND status!='OUT'");
 		foreach ($books as $row) {
 			$this->BP_model->update('books',array('borrowed_by' => NULL),$row->book_id);
 		}
-		$this->BP_model->update('reservation',array('status' => 'OUT'),$day,'check_in');
+		$this->BP_model->queryRunning("UPDATE reservation SET status='OUT' WHERE check_in<='$day' AND status!='OUT'",1,1);
 	}
 
 	public function createReservationConfirm($studentId) {
