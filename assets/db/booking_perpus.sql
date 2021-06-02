@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2021 at 07:54 PM
+-- Generation Time: Jun 02, 2021 at 07:13 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -65,7 +65,7 @@ CREATE TABLE `books` (
 INSERT INTO `books` (`id`, `barcode`, `title`, `author`, `publisher`, `genre`, `year_released`, `borrowed_by`) VALUES
 (3, '1965463176', 'Habis Gelap Terbitlah Terang', 'R. A. Kartini', 'Indonesia Raya', 'Education', 1945, NULL),
 (4, '6546543213', 'Habis Gelap Terbitlah Terang', 'R. A. Kartini', 'Indonesia Raya', 'Education', 1945, NULL),
-(5, '123456', 'Bumi Datar', 'Rangga', 'PT Sunda Empire', 'Education', 2021, NULL),
+(5, '123456', 'Bumi Datar', 'Rangga', 'PT Sunda Empire', 'Education', 2021, 1),
 (6, '1654', 'Bumi Datar', 'Rangga', 'PT Sunda Empire', 'Education', 2021, NULL);
 
 -- --------------------------------------------------------
@@ -137,9 +137,6 @@ INSERT INTO `reservation` (`id`, `reservation_code`, `check_in`, `cs_id`, `book_
 (1, 'Fri210528172508', '2021-05-28', 1, 3, '2021-05-28', 'OUT'),
 (2, 'Fri210528172508', '2021-05-28', 1, 4, '2021-05-28', 'OUT'),
 (3, 'Fri210528172508', '2021-05-28', 1, 5, '2021-05-28', 'OUT'),
-(4, 'Fri210528174034', '2021-06-04', 1, 3, '2021-05-28', 'OUT'),
-(5, 'Fri210528174034', '2021-06-04', 1, 4, '2021-05-28', 'OUT'),
-(6, 'Fri210528174034', '2021-06-04', 1, 5, '2021-05-28', 'OUT'),
 (7, 'Fri210528184308', '2021-05-28', 1, 3, '2021-05-28', 'OUT'),
 (8, 'Fri210528184308', '2021-05-28', 1, 4, '2021-05-28', 'OUT'),
 (9, 'Fri210528184308', '2021-05-28', 1, 5, '2021-05-28', 'OUT'),
@@ -148,7 +145,9 @@ INSERT INTO `reservation` (`id`, `reservation_code`, `check_in`, `cs_id`, `book_
 (12, 'Sat210529164222', '2021-05-30', 1, 5, '2021-05-29', 'OUT'),
 (13, 'Sat210529172446', '2021-05-31', 1, 4, '2021-05-29', 'OUT'),
 (14, 'Sun210530101834', '2021-05-30', 1, 5, '2021-05-30', 'OUT'),
-(15, 'Tue210601000511', '2021-06-01', 4, 3, '2021-06-01', 'OUT');
+(15, 'Tue210601000511', '2021-06-01', 4, 3, '2021-06-01', 'OUT'),
+(16, 'Wed210602230638', '2021-06-02', 1, 3, '2021-06-02', 'OUT'),
+(17, 'Wed210602235444', '2021-06-03', 1, 5, '2021-06-02', 'PENDING');
 
 --
 -- Indexes for dumped tables
@@ -219,7 +218,7 @@ ALTER TABLE `library_officer`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
