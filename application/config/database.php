@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'booking_perpus',
+	'hostname' => 'sql303.infinityfree.com',
+	'username' => 'if0_39618437',
+	'password' => 'RMYusuf010600',
+	'database' => 'if0_39618437_booklib',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

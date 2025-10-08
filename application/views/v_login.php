@@ -28,10 +28,10 @@
                                     <div class="card-body mt-3 d-flex flex-column justify-content-center">
                                         <?php echo form_open('login/cek') ?>
                                       		<span class="text-danger"><?php echo $this->session->flashdata('err'); ?></span>
-                                          <div class="form-group"><label class="mb-3" for="un">Username</label><input class="form-control py-4" id="un" type="text" name="username" placeholder="Your username..." autofocus required/></div>
+                                          <div class="form-group"><label class="mb-3" for="un">Username</label><input class="form-control py-4" id="un" type="text" name="username" placeholder="Your username..." value="demo" autofocus required/></div>
                                           <div class="form-group">
                                             <label class="mb-3  " for="pwd">Password</label>
-                                            <input class="form-control py-4" id="pwd" type="password" name="password" placeholder="Your security password..." required/>
+                                            <input class="form-control py-4" id="pwd" type="password" name="password" placeholder="Your security password..." value="demo" required/>
                                             <a href="" class="float-right" data-toggle="tooltip" data-placement="right" title="Contact our administrator (rijalmy010600@gmail.com) or your library officer.">Forget password?</a>
                                           </div>
                                           <div class="form-group d-flex align-items-center mt-4 mb-5" style="float:right">
